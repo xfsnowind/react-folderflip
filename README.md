@@ -13,17 +13,19 @@ npm install --save react-folderflip
 ## Usage
 
 ```tsx
-import React, { Component } from 'react'
+import React from 'react'
+import FolderFlip from 'react-folderflip'
 
-import MyComponent from 'react-folderflip'
-import 'react-folderflip/dist/index.css'
-
-class Example extends Component {
-  render() {
-    return <MyComponent />
-  }
+const Component = () => {
+  return <FolderFlip steps={} />
 }
 ```
+
+## Todo list
+
+* Component in different framework
+* Allow component be a non full-screen element
+* Set window size as parameter
 
 ## License
 
