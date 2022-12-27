@@ -8,7 +8,6 @@ import React, {
   CSSProperties,
   ReactElement
 } from 'react'
-// import FolderFlipStyles from './styles'
 import useIntersection from './useIntersection'
 import CONSTANTS, { REDUCER_TYPE, SECTION_STATE } from './constants'
 import FolderFlipReducer from './FolderFlipReducer'
@@ -111,12 +110,8 @@ const FolderFlip = ({ Steps }: Props) => {
 
   const getTagContentStyles = (idx: number) => {
     let tagStyle: CSSProperties = {
-      // backgroundColor,
-      // color: `${ColorYIQ(backgroundColor)}`,
       width: '100%',
-      borderRadius: '16px 16px 0 0',
       display: 'flex',
-      paddingTop: '40px',
       flexDirection: 'column',
       justifyContent: 'center',
       alignItems: 'center',
@@ -124,8 +119,6 @@ const FolderFlip = ({ Steps }: Props) => {
     }
 
     let contentStyle: CSSProperties = {
-      // backgroundColor,
-      // color: `${ColorYIQ(backgroundColor)}`,
       position: 'sticky',
       display: 'flex',
       flexDirection: 'column',
@@ -169,7 +162,6 @@ const FolderFlip = ({ Steps }: Props) => {
 
     return { tagStyle, contentStyle }
   }
-  console.log('ddd')
 
   const isInWindow = (idx: number, start: number) =>
     idx >= start && idx < start + windowSize
@@ -177,29 +169,24 @@ const FolderFlip = ({ Steps }: Props) => {
   return (
     <section className='FolderFlip' ref={elementRef}>
       {Steps.map((step, idx: number) => {
-        const { header } = step
+        const { header, content } = step
         const id = 'FolderFlipStep' + idx
-        // const backgroundColor = Background ?? 'white'
-        const { tagStyle, contentStyle } = getTagContentStyles(
-          idx
-          // backgroundColor
-        )
+        const { tagStyle, contentStyle } = getTagContentStyles(idx)
 
         return (
-          <React.Fragment key={'FolderFlipStep' + idx}>
+          <React.Fragment key={'FolderFlipStep_' + idx}>
             <div id={id} />
             <a href={'#' + id} className='FolderFlip-Tag' style={tagStyle}>
-              {header}
+              {header ?? ''}
             </a>
             <div
               className='FolderFlip-Content'
               style={{
                 ...contentStyle,
-                minHeight: `calc(100vh - ${windowSize * (tagHeight ?? 1)}px)`
+                height: `calc(100vh - ${windowSize * (tagHeight ?? 1)}px)`
               }}
             >
-              {/* {content} */}
-              <span className='FolderFlip-Content-Title'>{'ddddd'}</span>
+              {content ?? ''}
             </div>
           </React.Fragment>
         )
