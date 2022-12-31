@@ -16,8 +16,27 @@ npm install --save react-folderflip
 import React from 'react'
 import FolderFlip from 'react-folderflip'
 
+const steps = [
+  {
+    header: (
+      <div style={{ width: '100%', height: '50px', background: 'pink' }}>step1</div>
+    ),
+    content: (
+      <div style={{ width: '100%', height: '100%', background: 'pink' }} >content1</div>
+    )
+  },
+  {
+    header: (
+      <div style={{ width: '100%', height: '50px', background: 'pink' }}>step2</div>
+    ),
+    content: (
+      <div style={{ width: '100%', height: '100%', background: 'pink' }}>content2</div>
+    )
+  }
+]
+
 const Component = () => {
-  return <FolderFlip steps={} />
+  return <FolderFlip Steps={steps} />
 }
 ```
 
@@ -25,7 +44,7 @@ const Component = () => {
 
 * Component in different framework
 * Allow component be a non full-screen element
-* Set window size as parameter
+* Allow to set window size as parameter
 
 ## License
 

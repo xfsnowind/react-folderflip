@@ -22,6 +22,10 @@ type Props = {
 }
 
 const FolderFlip = ({ Steps }: Props) => {
+  if (!Array.isArray(Steps) || Steps.length < 2) {
+    throw new Error('Steps should be an array and contain at least two items.')
+  }
+
   const stepLength = Steps.length
 
   // define a window here, which indicates the folders showing in the screen
@@ -196,108 +200,3 @@ const FolderFlip = ({ Steps }: Props) => {
 }
 
 export default FolderFlip
-
-// const FolderFlipStyles = styled.section`
-//   counter-reset: section;
-//   .FolderFlip {
-//     &-Tag {
-//       display: inline-block;
-//       width: 100%;
-//       border-radius: 16px 16px 0 0;
-//       display: flex;
-//       padding-top: 40px;
-//       flex-direction: column;
-//       justify-content: center;
-//       align-items: center;
-//       text-decoration: none;
-
-//       &-Number {
-//         &:before {
-//           counter-increment: section;
-//           content: counter(section);
-//           font-family: Fann-Grotesque-Light-Pro;
-//           font-weight: 300;
-//           font-size: 40px;
-//           line-height: 100%;
-//         }
-//       }
-//     }
-
-//     &-Content {
-//       position: sticky;
-//       display: flex;
-//       flex-direction: column;
-//       align-items: center;
-
-//       &-Title {
-//         padding-top: 10px;
-//         text-align: center;
-//         font-family: Fann-Grotesque-Black-Pro;
-//         font-size: 40px;
-//         font-weight: 900;
-//       }
-
-//       &-Container {
-//         padding-top: 40px;
-//         display: flex;
-//         flex-direction: column;
-//         justify-content: start;
-//         align-items: center;
-//         gap: 34px;
-
-//         @media (min-width: ${md}) {
-//           align-items: start;
-//           justify-content: center;
-//         }
-
-//         @media (min-width: ${lg}) {
-//           max-width: 944px;
-//           flex-direction: row;
-//           align-items: start;
-//           padding-top: 64px;
-//           gap: 48px;
-//         }
-
-//         @media (min-width: ${xl}) {
-//           max-width: 1068px;
-//           justify-content: center;
-//         }
-
-//         img {
-//           border-radius: 8px;
-//           object-fit: cover;
-//           @media (max-width: ${md}) {
-//             width: 335px;
-//             height: 224px;
-//           }
-
-//           @media (min-width: ${md}) {
-//             width: 728px;
-//             height: 334px;
-//             align-self: center;
-//           }
-
-//           @media (min-width: ${lg}) {
-//             width: 486px;
-//             height: 334px;
-//           }
-//         }
-
-//         div {
-//           @media (min-width: ${lg}) {
-//             padding: 0;
-//             padding-top: 54px;
-//           }
-//           @media (min-width: ${md}) and (max-width: ${lg}) {
-//             max-width: 648px;
-//           }
-//         }
-
-//         button:last-child {
-//           ${buttons.ButtonStyle}
-//           ${buttons.ButtonColorFunc('#000')}
-//         }
-//       }
-//     }
-//   }
-// `
