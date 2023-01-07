@@ -36,15 +36,7 @@ interface ActionType {
 // TODO: The states array get updated once observers are triggered when scroll up/down
 // then update the section state, window start and observed element indexes according to the value of reach0 and reach100
 function FolderFlipReducer(state: StateType, action: ActionType): StateType {
-  // console.log(
-  //   "action: ",
-  //   action.type,
-  //   action.payload.index,
-  //   action.payload.value,
-  //   state
-  // );
-
-  if (!action) return state
+    if (!action) return state
 
   // set the value of edge state with given index
   if (action.type === REDUCER_TYPE.EDGE) {

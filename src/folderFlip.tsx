@@ -5,12 +5,12 @@ import React, {
   useEffect,
   useRef,
   useState,
-  CSSProperties,
   ReactElement
 } from 'react'
 import useIntersection from './useIntersection'
 import CONSTANTS, { REDUCER_TYPE, SECTION_STATE } from './constants'
 import FolderFlipReducer from './FolderFlipReducer'
+import { getTagContentStyles } from './styles'
 
 const { windowSize } = CONSTANTS
 
@@ -104,70 +104,18 @@ const FolderFlip = ({ Steps }: Props) => {
     setTagHeight(tagElement?.getBoundingClientRect().height)
   }, [Steps])
 
-  const getTagContentStyles = (idx: number) => {
-    let tagStyle: CSSProperties = {
-      width: '100%',
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'center',
-      alignItems: 'center',
-      textDecoration: 'none'
-    }
-
-    let contentStyle: CSSProperties = {
-      position: 'sticky',
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center'
-    }
-
-    if (isInWindow(idx, windowStart) && tagHeight) {
-      tagStyle.top = `${(idx - windowStart) * tagHeight}px`
-      tagStyle.bottom = `${(windowStart + windowSize - 1 - idx) * tagHeight}px`
-      tagStyle.marginTop = `${(idx - windowStart) * tagHeight}px`
-
-      if (sectionState === SECTION_STATE.STICKY) {
-        tagStyle.position = 'sticky'
-        contentStyle.top = `${(idx + 1 - windowStart) * tagHeight}px`
-      } else {
-        tagStyle.position = 'relative'
-        tagStyle.transform = `translateY(calc(${
-          (windowSize + windowStart - 1 - idx) * 100
-        }vh - ${tagHeight * (windowSize + windowStart - idx)}px))`
-
-        if (idx !== windowSize + windowStart - 1)
-          contentStyle.transform = `translateY(calc(${
-            (windowSize + windowStart - 1 - idx) * 100
-          }vh - ${
-            tagHeight * (windowSize + windowStart - idx - idx + windowStart)
-          }px))`
-      }
-    }
-
-    if (idx === windowSize + windowStart - 1 && tagHeight) {
-      if (sectionState === SECTION_STATE.STICKY) {
-        contentStyle.position = 'sticky'
-      } else {
-        contentStyle.position = 'relative'
-        contentStyle.top = '0px'
-        tagStyle.transform = `translateY(calc(${
-          (windowSize + windowStart - 1 - idx) * 100
-        }vh - ${tagHeight * (windowSize + windowStart - idx + 1)}px))`
-      }
-    }
-
-    return { tagStyle, contentStyle }
-  }
-
-  const isInWindow = (idx: number, start: number) =>
-    idx >= start && idx < start + windowSize
-
   return (
     <section className='FolderFlip' ref={elementRef}>
       {Steps.map((step, idx: number) => {
         const { header, content } = step
         const id = 'FolderFlipStep' + idx
-        const { tagStyle, contentStyle } = getTagContentStyles(idx)
+        const { tagStyle, contentStyle } = getTagContentStyles({
+          idx,
+          tagHeight,
+          windowSize,
+          windowStart,
+          sectionState
+        })
 
         return (
           <React.Fragment key={'FolderFlipStep_' + idx}>
