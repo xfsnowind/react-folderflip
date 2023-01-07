@@ -16,8 +16,8 @@ const { windowSize } = CONSTANTS
 
 type Props = {
   Steps: Array<{
-    header: string | ReactElement
-    content?: string | ReactElement
+    header: ReactElement
+    content: ReactElement
   }>
 }
 
@@ -120,11 +120,17 @@ const FolderFlip = ({ Steps }: Props) => {
         return (
           <React.Fragment key={'FolderFlipStep_' + idx}>
             <div id={id} />
-            <a href={'#' + id} className='FolderFlip-Tag' style={tagStyle}>
+            <a
+              href={'#' + id}
+              className='FolderFlip-Tag'
+              style={tagStyle}
+              data-testid='FolderFlip-Tag'
+            >
               {header ?? ''}
             </a>
             <div
               className='FolderFlip-Content'
+              data-testid='FolderFlip-Content'
               style={{
                 ...contentStyle,
                 height: `calc(100vh - ${windowSize * (tagHeight ?? 1)}px)`
