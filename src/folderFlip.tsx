@@ -39,15 +39,7 @@ const FolderFlip = ({ Steps }: Props) => {
   const [tagHeight, setTagHeight] = useState<number | undefined>(0)
 
   // save the edge and showup elements, it should be stable
-  const edgeElements = useMemo(
-    () =>
-      contentElements
-        ? [].slice.call(contentElements, windowSize - 1, stepLength)
-        : [],
-    [contentElements, stepLength]
-  )
-
-  const showupElements = useMemo(
+  const observedElements = useMemo(
     () =>
       contentElements
         ? [].slice.call(contentElements, windowSize - 1, stepLength)
@@ -96,10 +88,10 @@ const FolderFlip = ({ Steps }: Props) => {
   )
 
   // set up the observer for edge element with threshold 100%
-  useIntersection(edgeElements, reachEdgeFunc, 1)
+  useIntersection(observedElements, reachEdgeFunc, 1)
 
   // set up the observer for showup element with threshold 0%
-  useIntersection(showupElements, folderShowUpFunc, 0)
+  useIntersection(observedElements, folderShowUpFunc, 0)
 
   // initial the content elements
   useEffect(() => {
