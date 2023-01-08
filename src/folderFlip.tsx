@@ -9,7 +9,7 @@ import React, {
 } from 'react'
 import useIntersection from './useIntersection'
 import CONSTANTS, { REDUCER_TYPE, SECTION_STATE } from './constants'
-import FolderFlipReducer from './FolderFlipReducer'
+import FolderFlipReducer from './folderFlipReducer'
 import { getTagContentStyles } from './styles'
 
 const { windowSize } = CONSTANTS
