@@ -36,13 +36,21 @@ interface ActionType {
 // TODO: The states array get updated once observers are triggered when scroll up/down
 // then update the section state, window start and observed element indexes according to the value of isShowupReached and isEdgeReached
 function FolderFlipReducer(state: StateType, action: ActionType): StateType {
-    if (!action) return state
+  if (
+    !action ||
+    state.showupIndex < windowSize - 1 ||
+    state.edgeIndex < windowSize - 1
+  )
+    return state
 
   // set the value of edge state with given index
-  if (action.type === REDUCER_TYPE.EDGE) {
-    state.edgeStates[action.payload.index] = action.payload.value
-  } else if (action.type === REDUCER_TYPE.SHOWUP) {
-    state.showupStates[action.payload.index] = action.payload.value
+  switch (action.type) {
+    case REDUCER_TYPE.EDGE:
+      state.edgeStates[action.payload.index] = action.payload.value
+      break
+    case REDUCER_TYPE.SHOWUP:
+      state.showupStates[action.payload.index] = action.payload.value
+      break
   }
 
   let edgeIndex = state.edgeIndex,
@@ -50,7 +58,8 @@ function FolderFlipReducer(state: StateType, action: ActionType): StateType {
     sectionState = state.sectionState,
     windowStart = state.windowStart
 
-  const isShowupReached = state.showupStates[state.showupIndex - windowSize + 1],
+  const isShowupReached =
+      state.showupStates[state.showupIndex - windowSize + 1],
     isEdgeReached = state.edgeStates[state.edgeIndex - windowSize + 1]
 
   // console.log(
@@ -100,7 +109,6 @@ function FolderFlipReducer(state: StateType, action: ActionType): StateType {
   if (edgeIndex + 1 === showupIndex) sectionState = SECTION_STATE.STICKY
 
   // need to update the edge and showup index in the internal state type
-
   if (sectionState === SECTION_STATE.FLOAT) {
     if (isShowupReached && isEdgeReached) {
       if (windowStart + windowSize < state.stepLength)
@@ -123,13 +131,12 @@ function FolderFlipReducer(state: StateType, action: ActionType): StateType {
     }
   }
 
-  return {
-    ...state,
+  return Object.assign({}, state, {
     windowStart,
     edgeIndex,
     showupIndex,
     sectionState
-  }
+  })
 }
 
 export default FolderFlipReducer
