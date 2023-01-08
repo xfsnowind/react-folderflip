@@ -1,5 +1,4 @@
 import React from 'react'
-
 import FolderFlip from 'react-folderflip'
 
 const steps = [
@@ -121,28 +120,41 @@ const steps = [
 
 const App = () => {
   return (
-    <div>
-      <div>
-        test teste test esktsetsetest teste test esktsetsetest teste test
-        esktsetsetest teste test esktsetsetest teste test esktsetsetest teste
-        test esktsetsetest teste test esktsetsetest teste test esktsetsetest
-        teste test esktsetsetest teste test esktsetsetest teste test esktsetse
+    <div style={{ display: 'flex' }}>
+      <div style={{ overflow: 'auto', height: '100vh' }}>
+        {Array.from({ length: 40 }, () => (
+          <div>
+            test teste test esktsetsetest teste test esktsetsetest teste test
+            esktsetsetest teste test esktsetsetest teste test esktsetsetest
+            teste test esktsetsetest teste test esktsetsetest teste test
+            esktsetsetest teste test esktsetsetest teste test esktsetsetest
+            teste test esktsetse
+          </div>
+        ))}
       </div>
-      <div>
-        test teste test esktsetsetest teste test esktsetsetest teste test
-        esktsetsetest teste test esktsetsetest teste test esktsetsetest teste
-        test esktsetsetest teste test esktsetsetest teste test esktsetsetest
-        teste test esktsetsetest teste test esktsetsetest teste test esktsetse
-      </div>
-      <div>
-        {/* <div style={{width: '500px', height: '400px'}}> */}
-        <FolderFlip Steps={steps} />
-      </div>
-      <div>
-        test teste test esktsetsetest teste test esktsetsetest teste test
-        esktsetsetest teste test esktsetsetest teste test esktsetsetest teste
-        test esktsetsetest teste test esktsetsetest teste test esktsetsetest
-        teste test esktsetsetest teste test esktsetsetest teste test esktsetse
+      <div style={{ overflow: 'auto', height: '100vh' }}>
+        <div>
+          test teste test esktsetsetest teste test esktsetsetest teste test
+          esktsetsetest teste test esktsetsetest teste test esktsetsetest teste
+          test esktsetsetest teste test esktsetsetest teste test esktsetsetest
+          teste test esktsetsetest teste test esktsetsetest teste test esktsetse
+        </div>
+        <div>
+          test teste test esktsetsetest teste test esktsetsetest teste test
+          esktsetsetest teste test esktsetsetest teste test esktsetsetest teste
+          test esktsetsetest teste test esktsetsetest teste test esktsetsetest
+          teste test esktsetsetest teste test esktsetsetest teste test esktsetse
+        </div>
+        <div>
+          {/* <div style={{width: '500px', height: '400px'}}> */}
+          <FolderFlip Steps={steps} />
+        </div>
+        <div>
+          test teste test esktsetsetest teste test esktsetsetest teste test
+          esktsetsetest teste test esktsetsetest teste test esktsetsetest teste
+          test esktsetsetest teste test esktsetsetest teste test esktsetsetest
+          teste test esktsetsetest teste test esktsetsetest teste test esktsetse
+        </div>
       </div>
     </div>
   )

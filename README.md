@@ -28,10 +28,10 @@ const steps = [
   },
   {
     header: (
-      <div style={{ width: '100%', height: '50px', background: 'pink' }}>step2</div>
+      <div style={{ width: '100%', height: '50px', background: 'blue' }}>step2</div>
     ),
     content: (
-      <div style={{ width: '100%', height: '100%', background: 'pink' }}>content2</div>
+      <div style={{ width: '100%', height: '100%', background: 'blue' }}>content2</div>
     )
   }
 ]
@@ -40,6 +40,10 @@ const Component = () => {
   return <FolderFlip Steps={steps} />
 }
 ```
+
+## Example
+
+Check [here](https://xfsnowind.github.io/react-folderflip/)
 
 ## Todo list
 
