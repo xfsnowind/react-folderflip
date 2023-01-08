@@ -2,7 +2,8 @@
 
 > Made with create-react-library
 
-[![NPM](https://img.shields.io/npm/v/react-folderflip.svg)](https://www.npmjs.com/package/react-folderflip) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+[![NPM](https://img.shields.io/npm/v/react-folderflip.svg)](https://www.npmjs.com/package/react-folderflip) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com) [![Build Status](https://img.shields.io/github/actions/workflow/status/xfsnowind/react-folderflip/test.yml?branch=main)](https://github.com/xfsnowind/react-folderflip/actions/workflows/test.yml?query=branch%3Amain)
+[![Test Status](https://img.shields.io/github/actions/workflow/status/xfsnowind/react-folderflip/test.yml?branch=main)](https://github.com/xfsnowind/react-folderflip/actions/workflows/test.yml?query=branch%3Amain)
 
 ## Install
 
