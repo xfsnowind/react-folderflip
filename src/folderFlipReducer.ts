@@ -11,8 +11,8 @@ const { windowSize } = CONSTANTS
 // 3. the state should be updated internally
 
 // In these types of state, there are different variables which define the state:
-// 1. reach100 -> boolean, indicates if the current observed edge element reach threshold 100%
-// 2. reach0 -> boolean, indicates if the current observed showup element reaches threshold 0
+// 1. isEdgeReached -> boolean, indicates if the current observed edge element reach threshold 100%
+// 2. isShowupReached -> boolean, indicates if the current observed showup element reaches threshold 0
 // 3. edgeIdx -> integer, indicates the observed edge element index in edge element array
 // 4. showupIdx -> integer, indicates the observed showup element index in showup element array
 // 5. sectionState -> STICKY or FLOAT, indicates the current state of component
@@ -34,7 +34,7 @@ interface ActionType {
 }
 
 // TODO: The states array get updated once observers are triggered when scroll up/down
-// then update the section state, window start and observed element indexes according to the value of reach0 and reach100
+// then update the section state, window start and observed element indexes according to the value of isShowupReached and isEdgeReached
 function FolderFlipReducer(state: StateType, action: ActionType): StateType {
     if (!action) return state
 
@@ -50,14 +50,14 @@ function FolderFlipReducer(state: StateType, action: ActionType): StateType {
     sectionState = state.sectionState,
     windowStart = state.windowStart
 
-  const reach0 = state.showupStates[state.showupIndex - windowSize + 1],
-    reach100 = state.edgeStates[state.edgeIndex - windowSize + 1]
+  const isShowupReached = state.showupStates[state.showupIndex - windowSize + 1],
+    isEdgeReached = state.edgeStates[state.edgeIndex - windowSize + 1]
 
   // console.log(
   //   "0: ",
-  //   reach0,
+  //   isShowupReached,
   //   ", 100: ",
-  //   reach100,
+  //   isEdgeReached,
   //   ", state: ",
   //   state.sectionState,
   //   ", start: ",
@@ -73,7 +73,7 @@ function FolderFlipReducer(state: StateType, action: ActionType): StateType {
   // );
 
   // if the prev state is initial stable state, just update the section state
-  if (!reach0 && reach100 && edgeIndex + 1 === showupIndex) {
+  if (!isShowupReached && isEdgeReached && edgeIndex + 1 === showupIndex) {
     sectionState = SECTION_STATE.FLOAT
     return {
       ...state,
@@ -82,7 +82,7 @@ function FolderFlipReducer(state: StateType, action: ActionType): StateType {
   }
 
   // if the prev state is final stable state
-  if (reach0 && !reach100 && edgeIndex === showupIndex) {
+  if (isShowupReached && !isEdgeReached && edgeIndex === showupIndex) {
     sectionState = SECTION_STATE.STICKY
     return {
       ...state,
@@ -102,19 +102,19 @@ function FolderFlipReducer(state: StateType, action: ActionType): StateType {
   // need to update the edge and showup index in the internal state type
 
   if (sectionState === SECTION_STATE.FLOAT) {
-    if (reach0 && reach100) {
+    if (isShowupReached && isEdgeReached) {
       if (windowStart + windowSize < state.stepLength)
         showupIndex = windowStart + windowSize
-    } else if (!reach0 && !reach100) {
+    } else if (!isShowupReached && !isEdgeReached) {
       windowStart = state.windowStart > 0 ? state.windowStart - 1 : 0
       edgeIndex = state.windowStart + windowSize - 2
     }
   }
 
   if (sectionState === SECTION_STATE.STICKY) {
-    if (!reach0 && !reach100) {
+    if (!isShowupReached && !isEdgeReached) {
       if (windowStart > 0) showupIndex = windowStart + windowSize - 1
-    } else if (reach0 && reach100) {
+    } else if (isShowupReached && isEdgeReached) {
       edgeIndex = windowStart + windowSize
       windowStart =
         state.windowStart + windowSize < state.stepLength
