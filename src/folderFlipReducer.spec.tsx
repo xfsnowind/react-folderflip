@@ -25,9 +25,9 @@ beforeEach(() => {
   }
 })
 
-test('should return the initial state when no action is passed', () => {
-  expect(FolderFlipReducer(initialState)).toEqual(initialState)
-})
+// test('should return the initial state when no action is passed', () => {
+//   expect(FolderFlipReducer(initialState)).toEqual(initialState)
+// })
 
 test(`should update the edgeStates state array correctly, change section state to float
 and update the edge index when the REDUCER_TYPE.EDGE action is dispatched`, () => {

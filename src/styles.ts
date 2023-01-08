@@ -39,7 +39,7 @@ type styleProp = {
 }
 
 export const getTagContentStyles = ({idx, tagHeight, windowSize, windowStart, sectionState}: styleProp) => {
-  let tagStyle: CSSProperties = {
+  const tagStyle: CSSProperties = {
     width: '100%',
     display: 'flex',
     flexDirection: 'column',
@@ -48,7 +48,7 @@ export const getTagContentStyles = ({idx, tagHeight, windowSize, windowStart, se
     textDecoration: 'none'
   }
 
-  let contentStyle: CSSProperties = {
+  const contentStyle: CSSProperties = {
     position: 'sticky',
     display: 'flex',
     flexDirection: 'column',
