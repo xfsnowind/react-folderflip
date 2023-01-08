@@ -43,9 +43,9 @@ const Component = () => {
 
 ## Todo list
 
-* Component in different framework
-* Allow component be a non full-screen element
-* Allow to set window size as parameter
+- [] Component in different framework
+- [] Allow component be a non full-screen element
+- [] Allow to set window size as parameter
 
 ## License
 
