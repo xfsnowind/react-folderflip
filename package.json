@@ -8,6 +8,9 @@
   "main": "dist/index.js",
   "module": "dist/index.modern.js",
   "source": "src/index.tsx",
+  "browserslist": [
+    "defaults"
+  ],
   "engines": {
     "node": ">=10"
   },
@@ -15,6 +18,7 @@
     "build": "microbundle-crl --no-compress --format modern,cjs",
     "start": "microbundle-crl watch --no-compress --format modern,cjs",
     "prepare": "run-s build",
+    "cypress:open": "cypress open",
     "test": "run-s test:unit test:lint test:build",
     "test:build": "run-s build",
     "test:lint": "eslint src",
@@ -38,6 +42,7 @@
     "@typescript-eslint/parser": "^5.48.0",
     "babel-eslint": "^10.0.3",
     "cross-env": "^7.0.3",
+    "cypress": "^12.3.0",
     "eslint": "^8.31.0",
     "eslint-config-prettier": "^8.6.0",
     "eslint-config-standard": "^17.0.0",
