@@ -99,6 +99,12 @@ function FolderFlipReducer(state: StateType, action: ActionType): StateType {
     }
   }
 
+  //asdf asdfasdf
+  // a
+  // dsf
+  // asdf
+  // as
+  // df
   // all the other four situations would need to be handled under state type scroll
   // handle the pink ones in state machine diagram
 
